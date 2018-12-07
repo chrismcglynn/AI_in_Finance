@@ -169,7 +169,8 @@ class App extends Component {
         console.log(randStock);
         fetch('/getstockdata/?stock=' + randStock[1], {
           method: 'get'
-        }).then(function(res) {
+        }).then(function (res) {
+          console.log(res)
           return res.json();
         }).then(function(response) {
           data = JSON.parse(response).data;
@@ -225,10 +226,10 @@ class App extends Component {
 
   handleBuySell = (event) => {
     var userStockData = this.state.userStockData;
-    if (event.key == 'ArrowDown' && userStockData.currentSells > 0) {
+    if (event.key === 'ArrowDown' && userStockData.currentSells > 0) {
       this.setState({userSold:true});
     }
-    if (event.key == 'ArrowUp' && userStockData.currentBuys > 0) {
+    if (event.key === 'ArrowUp' && userStockData.currentBuys > 0) {
       this.setState({userBought:true});
     }
   }
@@ -583,6 +584,7 @@ class App extends Component {
     var podium = this.state.podium;
     var svgJSX = this.state.svgJSX.slice();
     var gettingNewStock = this.state.gettingNewStock;
+    // eslint-disable-next-line
     var bankStr;
     if (userStockData.bank < 0) {
       bankStr = '-$' + (-1*userStockData.bank);
